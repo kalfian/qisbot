@@ -1,4 +1,4 @@
-package qiscussdk
+package qiscus_sdk
 
 var (
 	POST_COMMENT = "/api/v2.1/rest/post_comment"

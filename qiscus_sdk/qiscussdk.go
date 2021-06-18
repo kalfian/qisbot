@@ -1,4 +1,4 @@
-package qiscussdk
+package qiscus_sdk
 
 import (
 	"bytes"
