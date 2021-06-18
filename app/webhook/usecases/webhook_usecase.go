@@ -27,7 +27,7 @@ func NewWebHookUsecase(sdk qiscussdk.QiscusSdkContract) WebHookUsecaseContract {
 func (usecase *webhookUsecase) ResponseWebHook(request models.RequestWebHook) error {
 	// SEND Message to client
 	var paramBotChat qiscussdk.ParamSendMessage
-	paramBotChat.UserID = "bot-qischat"
+	paramBotChat.UserID = usecase.SDK.GetBotID()
 	paramBotChat.RoomID = strconv.Itoa(request.Payload.Room.ID)
 
 	if request.Payload.Message.Text == "hai" {

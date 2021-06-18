@@ -9,22 +9,19 @@ import (
 
 type QiscusSdkContract interface {
 	SendMessage(request ParamSendMessage) (*ResponseSendMessage, error)
+	GetBotID() string
 
 	// Hit API SDK
 	HitAPI(payload interface{}, url string, method string) ([]byte, error)
 }
 
 type qiscusSdk struct {
-	AppID    string
-	SecretID string
-	BaseUrl  string
+	ParamQiscusSDK
 }
 
 func NewQiscusSDK(request ParamQiscusSDK) QiscusSdkContract {
 	return &qiscusSdk{
-		AppID:    request.AppID,
-		SecretID: request.SecretID,
-		BaseUrl:  request.BaseUrl,
+		request,
 	}
 }
 
@@ -67,4 +64,12 @@ func (sdk *qiscusSdk) HitAPI(payload interface{}, url string, method string) ([]
 	}
 
 	return body, nil
+}
+
+func (sdk *qiscusSdk) GetBotID() string {
+	if sdk.BotID == "" {
+		sdk.BotID = "bot-qischat"
+	}
+
+	return sdk.BotID
 }

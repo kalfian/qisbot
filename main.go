@@ -23,6 +23,7 @@ func main() {
 		AppID:    os.Getenv("QISCUS_APP_ID"),
 		SecretID: os.Getenv("QISCUS_SECRET"),
 		BaseUrl:  os.Getenv("QISCUS_BASE_URL"),
+		BotID:    os.Getenv("QISCUS_BOT_ID"),
 	})
 
 	routes.InitRoute(r, sdk)

@@ -11,6 +11,7 @@ type ParamQiscusSDK struct {
 	AppID    string
 	SecretID string
 	BaseUrl  string
+	BotID    string
 }
 
 type ParamSendMessage struct {
