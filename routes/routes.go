@@ -12,7 +12,7 @@ func InitRoute(r *gin.Engine, sdk qiscussdk.QiscusSdkContract) {
 	r.GET("/ping", pingHandler)
 
 	// WEB HOOK
-	r.GET("/webhook", webHookProvider.GetClientSendMessage)
+	r.POST("/webhook", webHookProvider.GetClientSendMessage)
 }
 
 func pingHandler(c *gin.Context) {
