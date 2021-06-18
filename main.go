@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	sdk "github.com/kalfian/qisbot/qiscus_sdk"
 	"github.com/kalfian/qisbot/routes"
 )
 
@@ -18,8 +19,13 @@ func main() {
 	port := ":" + os.Getenv("APP_PORT")
 
 	r := gin.Default()
+	sdk := sdk.NewQiscusSDK(sdk.ParamQiscusSDK{
+		AppID:    os.Getenv("QISCUS_APP_ID"),
+		SecretID: os.Getenv("QISCUS_SECRET"),
+		BaseUrl:  os.Getenv("QISCUS_BASE_URL"),
+	})
 
-	routes.InitRoute(r)
+	routes.InitRoute(r, sdk)
 
 	if err := r.Run(port); err != nil {
 		log.Fatalf("Error running server at %v: %+v", port, err)

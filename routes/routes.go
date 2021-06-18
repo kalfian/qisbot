@@ -1,9 +1,18 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/kalfian/qisbot/app/webhook"
+	qiscussdk "github.com/kalfian/qisbot/qiscus_sdk"
+)
 
-func InitRoute(r *gin.Engine) {
+func InitRoute(r *gin.Engine, sdk qiscussdk.QiscusSdkContract) {
+	webHookProvider := webhook.ProvideHandler(sdk)
+
 	r.GET("/ping", pingHandler)
+
+	// WEB HOOK
+	r.GET("/webhook", webHookProvider.GetClientSendMessage)
 }
 
 func pingHandler(c *gin.Context) {
