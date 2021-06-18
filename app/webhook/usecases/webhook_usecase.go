@@ -46,6 +46,13 @@ func (usecase *webhookUsecase) ResponseWebHook(request models.RequestWebHook) er
 				return err
 			}
 		}
+	} else if request.Payload.Message.Text == "mantaps" {
+		paramBotChat.Message = "Jooos!"
+		_, err := usecase.SDK.SendMessage(paramBotChat)
+
+		if err != nil {
+			return err
+		}
 	} else {
 		paramBotChat.Message = "Apa?"
 		_, err := usecase.SDK.SendMessage(paramBotChat)
